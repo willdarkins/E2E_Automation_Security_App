@@ -23,7 +23,7 @@ test.describe.parallel('login/logout flow', () => {
         
         const accountSummaryTab = await page.locator('#account_activity_tab')
         await expect(accountSummaryTab).toBeVisible
-
+        //below... I'm now navigating to the logout page to confirm it exists
         await page.goto('http://zero.webappsecurity.com/index.html')
         await expect(page).toHaveURL('http://zero.webappsecurity.com/index.html')
     })
