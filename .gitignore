@@ -1,0 +1,14 @@
+.DS_Store
+.idea/
+.auth/
+allure-results/
+allure-report/
+node_modules/
+playwright-report/
+test-results
+*.log
+*.bak
+*.local
+*.local.*
+.env
+.envrc
