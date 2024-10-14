@@ -25,4 +25,15 @@ test.describe('feedback form', () => {
 
     })
     // Submit feeback form
+    test('submit feedback form', async ({ page }) => {
+        await page.fill('#name', 'some name')
+        await page.fill('#email', 'willdarkins@gmail.com')
+        await page.fill('#subject', 'I am angry')
+        await page.fill('#comment', 'Can someone please help me?')
+        await page.click("input[type='submit']")
+
+        await page.goto('http://zero.webappsecurity.com/sendFeedback.html')
+        const header = await page.locator('h3');
+        await expect(header).toBeVisible();
+    })
 })
