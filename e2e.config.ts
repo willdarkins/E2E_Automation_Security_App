@@ -6,7 +6,7 @@ const config: PlaywrightTestConfig = {
     testDir: 'tests/e2e', //location of where your tests are running
     use: {
         viewport: {width: 1280, height: 720}, //what dimension the screen should be in
-        // actionTimeout: 10000, //setting the maximum time allowed for an action to complete before it is considered a failure
+        actionTimeout: 10000, //setting the maximum time allowed for an action to complete before it is considered a failure
         ignoreHTTPSErrors: true,
         video: 'off', //take a video on test fail
         screenshot: 'off', //take a screenshot on test
