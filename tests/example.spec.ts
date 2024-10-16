@@ -39,7 +39,7 @@ test ('Selectors Testing @mytag', async ({page})=> {
     await page.click('//button')
 })
 
-test.describe.parallel.only('My first test suite', () => {
+test.describe.parallel('My first test suite', () => {
     test ('Working with inputs', async ({page})=> {
         const errorMessage = await page.locator('.alert-error')
         
