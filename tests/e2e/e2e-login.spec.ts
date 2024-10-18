@@ -7,7 +7,7 @@ test.describe.parallel('login/logout flow', () => {
     let homePage: HomePage
 
     //before hook to send to website for each test
-    test.beforeEach(async ({page}) => {
+    test.beforeEach(async ({ page }) => {
         homePage = new HomePage(page)
         loginPage = new LoginPage(page)
 
