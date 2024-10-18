@@ -1,39 +1,28 @@
 import { test, expect } from '@playwright/test'
+import { HomePage } from '../../page-objects/HomePage'
+import { FeedbackPage } from '../../page-objects/FeedbackPage'
 
-test.describe('feedback form', () => {
+test.describe.only('feedback form', () => {
+   let homePage: HomePage
+   let feedbackPage: FeedbackPage
+   
     test.beforeEach(async ({ page }) => {
-        await page.goto('http://zero.webappsecurity.com/')
-        await page.click('#feedback')
+        homePage = new HomePage(page)
+        feedbackPage = new FeedbackPage(page)
+
+        await homePage.visit()
+        await homePage.clickOnFeedbackLink()
     })
     // Reset feeback form
     test('reset feedback form', async ({ page }) => {
-        await page.fill('#name', 'some name')
-        await page.fill('#email', 'willdarkins@gmail.com')
-        await page.fill('#subject', 'I am angry')
-        await page.fill('#comment', 'Can someone please help me?')
-        await page.click("input[name='clear']")
-
-        const nameInput = await page.locator('#name')
-        const emailInput = await page.locator('#email')
-        const subjectInput = await page.locator('#subject')
-        const commentInput = await page.locator('#comment')
-
-        await expect(nameInput).toBeEmpty()
-        await expect(emailInput).toBeEmpty()
-        await expect(subjectInput).toBeEmpty()
-        await expect(commentInput).toBeEmpty()
-
+        await feedbackPage.formFill('Will', 'willdarkins@gmail.com', 'derp', 'herp-de-derp')
+        await feedbackPage.clearForm()
+        await feedbackPage.assertReset()
     })
     // Submit feeback form
     test('submit feedback form', async ({ page }) => {
-        await page.fill('#name', 'some name')
-        await page.fill('#email', 'willdarkins@gmail.com')
-        await page.fill('#subject', 'I am angry')
-        await page.fill('#comment', 'Can someone please help me?')
-        await page.click("input[type='submit']")
-
-        await page.goto('http://zero.webappsecurity.com/sendFeedback.html')
-        const header = await page.locator('h3');
-        await expect(header).toBeVisible();
+        await feedbackPage.formFill('Will', 'willdarkins@gmail.com', 'derp', 'herp-de-derp')
+        await feedbackPage.submitForm()
+        await feedbackPage.feedbackFormSent()
     })
 })
