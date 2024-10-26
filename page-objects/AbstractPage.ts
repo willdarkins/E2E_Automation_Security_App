@@ -6,4 +6,8 @@ export class AbstractPage {
     constructor(page:Page) {
         this.page = page
     }
+
+    async wait(time) {
+        await this.page.waitForTimeout(time)
+    }
 }
