@@ -3,20 +3,16 @@ import { LoginPage } from '../../page-objects/LoginPage'
 import { HomePage } from '../../page-objects/HomePage'
 
 test.describe('currency exchange', () => {
-    let loginPage: LoginPage
     let homePage: HomePage
-
+    let loginPage: LoginPage
+    
     test.beforeEach(async ({ page }) => {
         homePage = new HomePage(page)
         loginPage = new LoginPage(page) 
         
-        homePage.visit()
-        loginPage.login('username', 'password')
-        // await page.goto('http://zero.webappsecurity.com/index.html')
-        // await page.click('#signin_button')
-        // await page.fill('#user_login', 'username')
-        // await page.fill('#user_password', 'password')
-        // await page.click('text=Sign in')
+       await homePage.visit()
+       await homePage.clickOnSignIn()
+       await loginPage.login('username', 'password')
     })
     test('convert currency', async ({ page }) => {
         await page.goto('http://zero.webappsecurity.com/bank/pay-bills.html')
