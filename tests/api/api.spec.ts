@@ -27,7 +27,7 @@ test.describe.parallel('api testing', () => {
         //running the console.log to being in order to see the data and get more info about it
     })
 
-    test.only('POST request - create new user', async ({ request }) => {
+    test('POST request - create new user', async ({ request }) => {
         const response = await request.post(`${baseUrl}/users`, {
             data: {
                 id:1000,
@@ -39,16 +39,21 @@ test.describe.parallel('api testing', () => {
         // console.log(responseBody)
         //running the console.log to being in order to see the data and get more info about it
 
+        expect(response.status()).toBe(200)
         expect(responseBody.id).toBe(1000)
         expect(responseBody.createdAt).toBeTruthy() //asserting a timestamp will be created... can't be specific because you don't know the moment
     })
 
-    test('POST request - Login', async ({ request }) => {
+    test.only('POST request - Login', async ({ request }) => {
         const response = await request.post(`${baseUrl}/login`, {
             data: {
                 email: 'eve.holt@reqres.in',
                 password: 'cityslicka'
             }
         })
+        const responseBody = JSON.parse(await response.text())
+        expect(response.status()).toBe(200)
+        expect(responseBody.token).toBeTruthy()
+        //Not adding in the login data because we're only confirming the idea someone can successfully login
     })
 })
