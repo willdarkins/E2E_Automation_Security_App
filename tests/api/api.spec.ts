@@ -13,7 +13,7 @@ test.describe.parallel('api testing', () => {
         expect(response.status()).toBe(404)
     })
 
-    test.only('GET request - get user details', async ({ request }) => {
+    test('GET request - get user details', async ({ request }) => {
         const response = await request.get(`${baseUrl}/users/1`)
         const responseBody = JSON.parse(await response.text()) //variable that parses JSON data into readable text on our end
 
@@ -25,5 +25,30 @@ test.describe.parallel('api testing', () => {
 
         // console.log(responseBody)
         //running the console.log to being in order to see the data and get more info about it
+    })
+
+    test.only('POST request - create new user', async ({ request }) => {
+        const response = await request.post(`${baseUrl}/users`, {
+            data: {
+                id:1000,
+                name: 'Fuck Stick',
+                job: 'fucking shit up'
+            } 
+        })
+        const responseBody = JSON.parse(await response.text())
+        // console.log(responseBody)
+        //running the console.log to being in order to see the data and get more info about it
+
+        expect(responseBody.id).toBe(1000)
+        expect(responseBody.createdAt).toBeTruthy() //asserting a timestamp will be created... can't be specific because you don't know the moment
+    })
+
+    test('POST request - Login', async ({ request }) => {
+        const response = await request.post(`${baseUrl}/login`, {
+            data: {
+                email: 'eve.holt@reqres.in',
+                password: 'cityslicka'
+            }
+        })
     })
 })
