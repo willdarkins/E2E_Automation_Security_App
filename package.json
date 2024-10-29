@@ -16,7 +16,7 @@
     "tests:visual:firefox:update": "playwright test --config=visual.config.ts --project=Firefox --update-snapshots",
     "tests:visual:webkit:update": "playwright test --config=visual.config.ts --project=Webkit --update-snapshots",
 
-    "test:api": "playwright test --config=api.config.ts --project=Chromium "
+    "tests:api": "playwright test --config=api.config.ts --project=Chromium "
   },
   "author": "Will Darkins",
   "license": "ISC",
