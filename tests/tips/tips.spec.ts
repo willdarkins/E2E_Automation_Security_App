@@ -1,13 +1,16 @@
 import { test, expect } from '@playwright/test'
-import { getRandomNumber } from '../../utils/data-helpers'
+import { getRandomNumber, getRandomString } from '../../utils/data-helpers'
 
 //Below - You're passiong in 'testInfo' in order to get more information about tests run below
 test.describe('Tips & Tricks seciton', () => {
-    test('testInfo object', async ({ page }, testInfo) => {
+    test.only('testInfo object', async ({ page }, testInfo) => {
         await page.goto('https://www.example.com')
         //console.log(testInfo.expectedStatus)
         let newNumber = await getRandomNumber()
+        let newString = await getRandomString()
+
         console.log(newNumber)
+        console.log(newString)
     })
 //You're passing the browser type as a variable and telling the function to skip running the test in Chrome
     test('test skip browser', async ({ page, browserName }) => {
