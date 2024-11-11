@@ -27,4 +27,12 @@ test.describe('Tips & Tricks seciton', () => {
             await page.waitForTimeout(3000)
         })
     }
+//Allows you to simulate moving your mouse
+    test('mouse movement simulation', async ({ page }) => {
+        await page.goto('https://www.example.com')
+        await page.mouse.move(0,0)
+        await page.mouse.down()
+        await page.mouse.move(0, 100)
+        await page.mouse.up()
+    })
 })
