@@ -21,7 +21,7 @@ test.describe('Tips & Tricks seciton', () => {
 //the #searchTerm is a selector for search box - We're filling box with values from array
     const people = ['Mike', 'Judy', 'Peter', 'Will', 'Alice']
     for(const name of people) {
-        test.only(`running test for ${name}`, async ({ page }) => {
+        test(`running test for ${name}`, async ({ page }) => {
             await page.goto('http://zero.webappsecurity.com/index.html')
             await page.fill('#searchTerm', `${name}`)
             await page.waitForTimeout(3000)
@@ -34,5 +34,16 @@ test.describe('Tips & Tricks seciton', () => {
         await page.mouse.down()
         await page.mouse.move(0, 100)
         await page.mouse.up()
+    })
+//Recreating a browser window with new context, then creating 3 new browser tabs that go to the website listed below
+    test.only('multiple browser tabs inside 1 browser', async ({ browser }) => {
+        const context = await browser.newContext()
+        const page1 = await context.newPage()
+        const page2 = await context.newPage()
+        const page3 = await context.newPage()
+        await page1.goto('https://www.example.com')
+        await page2.goto('https://www.example.com')
+        await page3.goto('https://www.example.com')
+        await page1.waitForTimeout(5000)
     })
 })
