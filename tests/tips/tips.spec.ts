@@ -36,7 +36,7 @@ test.describe('Tips & Tricks seciton', () => {
         await page.mouse.up()
     })
 //Recreating a browser window with new context, then creating 3 new browser tabs that go to the website listed below
-    test.only('multiple browser tabs inside 1 browser', async ({ browser }) => {
+    test('multiple browser tabs inside 1 browser', async ({ browser }) => {
         const context = await browser.newContext()
         const page1 = await context.newPage()
         const page2 = await context.newPage()
