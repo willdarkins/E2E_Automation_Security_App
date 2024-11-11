@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 //Below - You're passiong in 'testInfo' in order to get more information about tests run below
-test.describe.only('Tips & Tricks seciton', () => {
+test.describe('Tips & Tricks seciton', () => {
     test('testInfo object', async ({ page }, testInfo) => {
         await page.goto('https://www.example.com')
         //console.log(testInfo)
@@ -16,4 +16,15 @@ test.describe.only('Tips & Tricks seciton', () => {
         test.fixme(browserName === 'chromium', 'Test is not stable and needs revision')
         await page.goto('https://www.example.com')
     })
+
+//Creating an array variable to pass into the for loop below which allows us to search for the array values
+//the #searchTerm is a selector for search box - We're filling box with values from array
+    const people = ['Mike', 'Judy', 'Peter', 'Will', 'Alice']
+    for(const name of people) {
+        test.only(`running test for ${name}`, async ({ page }) => {
+            await page.goto('http://zero.webappsecurity.com/index.html')
+            await page.fill('#searchTerm', `${name}`)
+            await page.waitForTimeout(3000)
+        })
+    }
 })
