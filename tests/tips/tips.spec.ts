@@ -3,7 +3,7 @@ import { getRandomNumber, getRandomString } from '../../utils/data-helpers'
 
 //Below - You're passiong in 'testInfo' in order to get more information about tests run below
 test.describe('Tips & Tricks seciton', () => {
-    test.only('testInfo object', async ({ page }, testInfo) => {
+    test('testInfo object', async ({ page }, testInfo) => {
         await page.goto('https://www.example.com')
         //console.log(testInfo.expectedStatus)
         let newNumber = await getRandomNumber()

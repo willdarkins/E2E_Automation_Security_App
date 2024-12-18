@@ -11,11 +11,9 @@
     "tests:visual:chrome": "playwright test --config=visual.config.ts --project=Chromium",
     "tests:visual:firefox": "playwright test --config=visual.config.ts --project=Firefox",
     "tests:visual:webkit": "playwright test --config=visual.config.ts --project=Webkit",
-
     "tests:visual:chrome:update": "playwright test --config=visual.config.ts --project=Chromium  --update-snapshots",
     "tests:visual:firefox:update": "playwright test --config=visual.config.ts --project=Firefox --update-snapshots",
     "tests:visual:webkit:update": "playwright test --config=visual.config.ts --project=Webkit --update-snapshots",
-
     "tests:api": "playwright test --config=api.config.ts --project=Chromium "
   },
   "author": "Will Darkins",
@@ -23,5 +21,8 @@
   "dependencies": {
     "@playwright/test": "^1.47.2",
     "prettier": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2"
   }
 }
